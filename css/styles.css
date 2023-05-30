@@ -19,8 +19,8 @@ body {
 
 .gradient-border {
     border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 255, .5), yellow, rgba(0, 0, 255, .5));
+    height: 2px;
+    background-image: linear-gradient(to right, blue, #ffff00da, #ffff00da, blue);
 }
 
 .logo {
