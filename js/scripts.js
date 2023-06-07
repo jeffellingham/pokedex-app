@@ -57,36 +57,46 @@ let pokemonRepository = (function () {
         if ( typeof pokemon === "object" && Object.keys(pokemon) === Object.keys(pokemonList[0])) {
         pokemonList.push(pokemon);
         }
-    }
+    };
 
     //This function is equivalent to calling pokemonList before I wrapped it in an IIFE
     function getAll() {
         return pokemonList;
-    }
+    };
 
     //I tried writing a filter function here, but don't think it actually works
     function pickType(types) {
         return pokemonList.filter(pokemonList.type === types);
-    }
+    };
 
+    //Function to add each pokemon to a newly created DOM element
     function addListItem(pokemon) {
         let pokeList = document.querySelector('ul');
-
         let listItem = document.createElement('li');
-    
+        
         let button = document.createElement('button');
-        button.innerText = pokemon.id + '. ' + pokemon.name + '\nType: ' + pokemon.type + '\nWeaknesses: ' + pokemon.weaknesses;
+        button.innerText = pokemon.id + '. ' + pokemon.name + 
+            '\nType: ' + pokemon.type + '\nWeaknesses: ' + pokemon.weaknesses;
         button.classList.add('pokeList--item');
     
         listItem.appendChild(button);
         pokeList.appendChild(listItem);
-    }
+
+        button.addEventListener('click', function (event) {
+            showDetails(pokemon);
+        });
+    };
+
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    };
 
     return {
         add: add,
         getAll: getAll,
         pickType,
-        addListItem
+        addListItem,
+        showDetails
     };
 })();
 
