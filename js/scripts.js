@@ -47,8 +47,8 @@ let pokemonRepository = (function () {
             name: 'Weedle',
             id: 13,
             height: 0.3,
-            type: ['bug', 'poison'],
-            weaknesses: ['fire', 'psychic', 'flying', 'rock']
+            type: ['bug', ' poison'],
+            weaknesses: ['fire', ' psychic', ' flying', ' rock']
         }
     ];
 
@@ -69,40 +69,29 @@ let pokemonRepository = (function () {
         return pokemonList.filter(pokemonList.type === types);
     }
 
+    function addListItem(pokemon) {
+        let pokeList = document.querySelector('ul');
+
+        let listItem = document.createElement('li');
+    
+        let button = document.createElement('button');
+        button.innerText = pokemon.id + '. ' + pokemon.name + '\nType: ' + pokemon.type + '\nWeaknesses: ' + pokemon.weaknesses;
+        button.classList.add('pokeList--item');
+    
+        listItem.appendChild(button);
+        pokeList.appendChild(listItem);
+    }
+
     return {
         add: add,
         getAll: getAll,
-        pickType
+        pickType,
+        addListItem
     };
 })();
 
 pokemonRepository.getAll().forEach(function (pokemon) {
-    document.write("<section><p>#" + pokemon.id + " " + pokemon.name + "</p>");
-
-    document.write("<p>Height: <span>" + pokemon.height + "m</span></p>");
-
-    document.write("<p>Type: ");
-    pokemon.type.forEach(function (types, index) {
-        document.write("<span>" + types);
-        if (pokemon.type.length - 1 === index) {
-            document.write(".");
-        }
-        else {
-            document.write(", ");
-        }
-    });
-    document.write("</span></p>");
-
-    document.write("<p>Weaknesses: ");
-    pokemon.weaknesses.forEach(function (weakness, index) {
-        document.write("<span>" + weakness);
-        if (pokemon.weaknesses.length - 1 === index) {
-            document.write(".");
-        }
-        else {
-            document.write(", ");
-        }
-    });
-    document.write("</span></p><hr></section>");
+    pokemonRepository.addListItem(pokemon);
 });
+
 

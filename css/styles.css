@@ -1,21 +1,16 @@
 
+/* Official Pokemon logo color hexes -->   Yellow: #ffcb05     blue: #2a75bb */
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-size: 1.25em;
-    font-weight: 700;
-    line-height: .5em;
-}
-
-span {
-    font-weight: 400;
+    line-height: 1.2em;
 }
 
 
-/* Header */
+/* ------------HEADER------------ */
 
 .page-header {
     text-align: center;
@@ -29,4 +24,30 @@ span {
 
 .logo {
     width: 200px;
+}
+
+/* ---------------MAIN-------------- */
+
+main {
+    margin: 50px 0;
+}
+
+.pokemon-list {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.pokeList--item {
+    font-size: 1.25em;
+    font-weight: 700;
+    text-align: center;
+    text-transform: capitalize;
+    color: #2a75bb;
+    border: 2px solid #2a75bb;
+    background-color: #ffcb05;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
