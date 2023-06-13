@@ -47,6 +47,7 @@ let pokemonRepository = (function () {
     };
 
     function loadList() {
+        showLoadingMessage();
         return fetch(apiUrl).then(function(response) {
             return response.json();
         }).then(function(json) {
@@ -63,6 +64,7 @@ let pokemonRepository = (function () {
     }
 
     function loadDetails(item) {
+        // showLoadingMessage();
         let url = item.detailsUrl;
         return fetch(url).then(function(response) {
             return response.json();
@@ -74,6 +76,7 @@ let pokemonRepository = (function () {
             for(let i = 0; i < item.types.length; i++){
                 item.types[i] = details.types;
             }
+            // hideLoadingMessage();
         }).catch(function(e) {
             console.error(e);
         });
@@ -85,6 +88,15 @@ let pokemonRepository = (function () {
         });
     };
 
+    function showLoadingMessage () {
+        document.querySelector('.pokedex').classList.add('hidden');
+    }
+
+    function hideLoadingMessage () {
+        document.querySelector('.pokedex').classList.remove('hidden');
+        document.querySelector('.loader').classList.add('hidden');
+    }
+
     return {
         add: add,
         getAll: getAll,
@@ -92,7 +104,8 @@ let pokemonRepository = (function () {
         addListItem,
         showDetails,
         loadList,
-        loadDetails
+        loadDetails,
+        hideLoadingMessage
     };
 })();
 
@@ -101,6 +114,8 @@ pokemonRepository.loadList().then(function(){
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon);
     });
+}).then(function() {
+    pokemonRepository.hideLoadingMessage();
 })
 
 
