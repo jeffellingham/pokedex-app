@@ -29,19 +29,19 @@ body {
 /* ---------------MAIN-------------- */
 
 main {
-    margin: 50px 0;
+    margin: 50px;
 }
 
 .pokemon-list {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 50px;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
 .pokeList--item {
-    font-size: 1.25em;
+    font-size: 1.15em;
     font-weight: 700;
     line-height: 1.5em;
     text-align: center;
