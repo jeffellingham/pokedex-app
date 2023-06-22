@@ -34,6 +34,13 @@ let pokemonRepository = (function () {
             button.innerText = pokemon.id + '. ' + pokemon.name + 
                 '\nHeight: ' + pokemon.height + 'm' + '\nWeight: ' + 
                 pokemon.weight + 'kg\n';
+            button.innerText += 'Types: ' + pokemon.types[0]["type"]["name"];
+            if (pokemon.types.length > 1) {
+                button.innerText += ', ' + pokemon.types[1]["type"]["name"] + '\n';
+            } else {
+                button.innerText += '\n'
+            }
+                // pokemon.types[1]["type"]["name"] +
             button.innerHTML += '<img src="'+pokemon.imageUrl+'" >';
             button.classList.add('pokeList--item');
         })
@@ -63,8 +70,9 @@ let pokemonRepository = (function () {
         })
     }
 
+    // Pulling all desired data from inside each Pokemon's provided URL
     function loadDetails(item) {
-        // showLoadingMessage();
+        showLoadingMessage();
         let url = item.detailsUrl;
         return fetch(url).then(function(response) {
             return response.json();
@@ -73,11 +81,13 @@ let pokemonRepository = (function () {
             item.id = details.id;
             item.height = details.height / 10;
             item.weight = details.weight / 10;
-            for(let i = 0; i < item.types.length; i++){
-                item.types[i] = details.types;
+            item.types = [];
+            for(let i = 0; i < details.types.length; i++){
+                item.types[i] = details.types[i];
             }
-            // hideLoadingMessage();
+            hideLoadingMessage();
         }).catch(function(e) {
+            hideLoadingMessage();
             console.error(e);
         });
     }
@@ -116,7 +126,10 @@ pokemonRepository.loadList().then(function(){
     });
 }).then(function() {
     pokemonRepository.hideLoadingMessage();
-})
+}).catch(function(e) {
+    hideLoadingMessage();
+    console.error(e);
+});
 
 
 
