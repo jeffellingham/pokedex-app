@@ -75,6 +75,7 @@ let pokemonRepository = (function () {
             return response.json();
         }).then(function(details) {
             item.imageUrl = details.sprites.front_default;
+            item.modalImageUrl = details.sprites.other.dream_world.front_default;
             item.id = details.id;
             item.height = details.height / 10;
             item.weight = details.weight / 10;
@@ -107,7 +108,7 @@ let pokemonRepository = (function () {
         //Pokemon name and number
         let titleElement = document.createElement('h1');
         titleElement.innerText = pokemon.id + '. ' + pokemon.name + '\n';
-        titleElement.innerHTML += '<img src="'+pokemon.imageUrl+'" >';
+        titleElement.innerHTML += '<img src="'+pokemon.modalImageUrl+'" >';
 
         //Pokemon info and picture
         let contentElement = document.createElement('p');
