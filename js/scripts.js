@@ -31,18 +31,15 @@ let pokemonRepository = (function () {
         let button = document.createElement('button');
 
         loadDetails(pokemon).then(function () {
-            button.innerText = pokemon.id + '. ' + pokemon.name + 
-                '\nHeight: ' + pokemon.height + 'm' + '\nWeight: ' + 
-                pokemon.weight + 'kg\n';
-            button.innerText += 'Types: ' + pokemon.types[0]["type"]["name"];
-            if (pokemon.types.length > 1) {
-                button.innerText += ', ' + pokemon.types[1]["type"]["name"] + '\n';
-            } else {
-                button.innerText += '\n'
-            }
-                // pokemon.types[1]["type"]["name"] +
-            button.innerHTML += '<img src="'+pokemon.imageUrl+'" >';
+            button.innerHTML += '<h1>' + pokemon.id + '. ' + pokemon.name + '</h1>';
+            button.innerHTML += '<img src="' + pokemon.imageUrl + '" alt="' + pokemon.name + '\'s image" >';
+
             button.classList.add('pokeList--item');
+            // Adds background color based on Pokemon's first type, can't figure out how to split for dual types
+            button.classList.add(pokemon.types[0]["type"]["name"]);
+            // if (pokemon.types.length > 1) {
+            //     button.innerHTML += 'style="background-color: linear-gradient(to right, '
+            // }
         })
     
         listItem.appendChild(button);
@@ -92,9 +89,70 @@ let pokemonRepository = (function () {
         });
     }
 
+    // Function for modal and its functionality
+    function showModal(pokemon) {
+        let modalContainer = document.querySelector('#modal-container');
+
+        modalContainer.innerHTML = '';
+
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+        
+        //Create close button
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', hideModal);
+
+        //Pokemon name and number
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = pokemon.id + '. ' + pokemon.name + '\n';
+        titleElement.innerHTML += '<img src="'+pokemon.imageUrl+'" >';
+
+        //Pokemon info and picture
+        let contentElement = document.createElement('p');
+        contentElement.innerText = 'Height: ' + pokemon.height + 'm';
+        let contentElement2 = document.createElement('p');
+        contentElement2.innerText = 'Weight: ' + pokemon.weight + 'kg\n';
+        let contentElement3 = document.createElement('p');
+        contentElement3.innerText += 'Types: ' + pokemon.types[0]["type"]["name"];
+        if (pokemon.types.length > 1) {
+            contentElement3.innerText += ', ' + pokemon.types[1]["type"]["name"];
+        }
+        
+        //Adding modal elements to DOM
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElement);
+        modal.appendChild(contentElement2);
+        modal.appendChild(contentElement3);
+        modalContainer.appendChild(modal);
+
+        function hideModal() {
+            modalContainer.classList.remove('is-visible');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+                hideModal();
+            }
+        });
+
+        modalContainer.classList.add('is-visible');
+
+        //close modal by clicking outside the modal
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            //Specifying the container excludes the child (the actual modal)
+            if (target === modalContainer) {
+                hideModal();
+            }
+        });
+    }
+
     function showDetails(pokemon) {
-        loadDetails(pokemon).then(function() {
-            console.log(pokemon);
+        loadDetails(pokemon).then(() => {
+            showModal(pokemon);
         });
     };
 
