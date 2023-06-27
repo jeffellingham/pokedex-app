@@ -67,18 +67,25 @@ img[alt="close button"]:hover {
     transform: rotate(24deg);
 }
 
+.navContainer {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+}
+
 .next-button, .next-button img {
-    float: right;
     width: 25px;
     height: 25px;
     margin: 0;
     padding: 0;
     background-color: lightgoldenrodyellow;
     border: none;
+    
 }
 
 .previous-button, .previous-button img {
-    float: left;
+    
     width: 25px;
     height: 25px;
     margin: 0;
@@ -123,25 +130,26 @@ img[alt="close button"]:hover {
 
 /* ------------HEADER------------ */
 
-.page-header {
+/* .page-header {
     text-align: center;
-}
+} */
 
 .gradient-border {
     border: 0;
     height: 2px;
     background-image: linear-gradient(to right, blue, #ffff00da, #ffff00da, blue);
+    margin-bottom: 0;
 }
 
 .logo {
-    width: 200px;
+    width: 150px;
 }
 
 /* ---------------MAIN-------------- */
 
 main {
     margin: 125px;
-    margin-top: 25px;
+    margin-top: 0;
 }
 
 .title-box {
@@ -159,13 +167,13 @@ main {
     color: #ffcb05;
     text-shadow: -1px 2px 2px rgb(42, 117, 187);
     -webkit-text-stroke: 3px #2a75bb;
-    margin: 25px 0;
+    margin: 0;
 }
 
 .pokemon-list {
     list-style: none;
     display: flex;
-    gap: 75px 75px;
+    gap: 50px 50px;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding: 0;
@@ -225,9 +233,10 @@ main {
     }
 }
 
-.pokeList--item:hover {
+.pokeList--item:hover, .next-button img:hover, .previous-button img:hover {
     /* transform: rotateX(15deg); */
     transform: scale(.992);
+    cursor: pointer;
 }
 
 .hidden {

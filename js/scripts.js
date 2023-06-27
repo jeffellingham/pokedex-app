@@ -31,6 +31,8 @@ let pokemonRepository = (function () {
         let button = document.createElement('button');
 
         loadDetails(pokemon).then(function () {
+            listItem.classList.add('pokemon' + pokemon.id);
+
             button.innerHTML += '<h1>' + pokemon.id + '. ' + pokemon.name + '</h1>';
             button.innerHTML += '<img src="' + pokemon.imageUrl + '" alt="' + pokemon.name + '\'s image" >';
 
@@ -41,6 +43,7 @@ let pokemonRepository = (function () {
             //     button.innerHTML += 'style="background-color: linear-gradient(to right, '
             // }
         })
+
     
         listItem.appendChild(button);
         pokeList.appendChild(listItem);
@@ -109,14 +112,16 @@ let pokemonRepository = (function () {
         closeButtonElement.addEventListener('click', hideModal);
 
         //Create modal navigation buttons
-        // let leftButtonElement = document.createElement('button');
-        // leftButtonElement.classList.add('previous-button');
-        // leftButtonElement.innerHTML += '<img src="img/left_arrow_icon.png" alt="previous nav button">';
-        // leftButtonElement.addEventListener('click', previousModal);
-        // let rightButtonElement = document.createElement('button');
-        // rightButtonElement.classList.add('next-button');
-        // rightButtonElement.innerHTML += '<img src="img/right_arrow_icon.png" alt="next nav button">';
-        // rightButtonElement.addEventListener('click', nextPokemon);
+        let navContainer = document.createElement('div');
+        navContainer.classList.add('navContainer');
+        let leftButtonElement = document.createElement('button');
+        leftButtonElement.classList.add('previous-button');
+        leftButtonElement.innerHTML += '<img src="img/left_arrow_icon.png" alt="previous nav button">';
+        leftButtonElement.addEventListener('click', previousModal);
+        let rightButtonElement = document.createElement('button');
+        rightButtonElement.classList.add('next-button');
+        rightButtonElement.innerHTML += '<img src="img/right_arrow_icon.png" alt="next nav button">';
+        rightButtonElement.addEventListener('click', nextModal);
 
 
         //Pokemon name and number
@@ -128,7 +133,7 @@ let pokemonRepository = (function () {
         let contentElement = document.createElement('p');
         contentElement.innerText = 'Height: ' + pokemon.height + 'm';
         let contentElement2 = document.createElement('p');
-        contentElement2.innerText = 'Weight: ' + pokemon.weight + 'kg\n';
+        contentElement2.innerText = 'Weight: ' + pokemon.weight + 'kg';
         let contentElement3 = document.createElement('p');
         contentElement3.innerText += 'Types: ' + pokemon.types[0]["type"]["name"];
         if (pokemon.types.length > 1) {
@@ -155,8 +160,6 @@ let pokemonRepository = (function () {
         //Adding modal elements to DOM
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
-        // titleElement.appendChild(leftButtonElement);
-        // titleElement.appendChild(rightButtonElement);
         modal.appendChild(contentElement);
         modal.appendChild(contentElement2);
         modal.appendChild(contentElement3);
@@ -164,20 +167,33 @@ let pokemonRepository = (function () {
         statContainer.appendChild(hpStat);
         statContainer.appendChild(attackStat);
         statContainer.appendChild(defenseStat);
+        modal.appendChild(navContainer);
+        navContainer.appendChild(leftButtonElement);
+        navContainer.appendChild(rightButtonElement);
         modalContainer.appendChild(modal);
 
-        //Trying to figure out next and previous buttons...
-        // function nextModal() {
-        //     hideModal();
-        //     let nextPokemon = pokemon.nextSibling;
-        //     showModal(pokemon.nextSibling);
-        // }
-        // function previousModal() {
-        //     hideModal();
-        //     let prevPokemon = pokemon.previousSibling;
-        //     showDetails(pokemon.previousSibling);
-        // }
+        //next and previous buttons
+        function nextModal() {
+            console.log(pokemonList[pokemon.id]);
+            showModal(pokemonList[pokemon.id]);
+        }
+        window.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight') {
+                nextModal();
+            }
+        });
 
+        function previousModal() {
+            console.log(pokemonList[pokemon.id - 2]);
+            showModal(pokemonList[pokemon.id - 2]);
+        }
+        window.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowLeft') {
+                previousModal();
+            }
+        });
+
+        //Closing the modal
         function hideModal() {
             modalContainer.classList.remove('is-visible');
         }
@@ -202,10 +218,12 @@ let pokemonRepository = (function () {
 
     //Trying to figure out next and previous buttons..
     // function nextPokemon(pokemon) {
-    //     let next = pokemon + 1;
-    //     loadDetails(next).then(() => {
-    //         showModal(next);
-    //     })
+    //     let nextId = pokemon;
+    //     let next = document.getElementsByClassName('pokemon' + nextId);
+    //     console.log(pokemonList[pokemon]);
+        // loadDetails(next).then(() => {
+        //     showModal(next);
+        // })
     // }
 
     function showDetails(pokemon) {
