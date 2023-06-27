@@ -83,6 +83,9 @@ let pokemonRepository = (function () {
             for(let i = 0; i < details.types.length; i++){
                 item.types[i] = details.types[i];
             }
+            item.hp = details.stats[1].base_stat;
+            item.attack = details.stats[2].base_stat;
+            item.defense = details.stats[3].base_stat;
             hideLoadingMessage();
         }).catch(function(e) {
             hideLoadingMessage();
@@ -102,8 +105,19 @@ let pokemonRepository = (function () {
         //Create close button
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'Close';
+        closeButtonElement.innerHTML += '<img src="img/close_icon.png" alt="close button">';
         closeButtonElement.addEventListener('click', hideModal);
+
+        //Create modal navigation buttons
+        // let leftButtonElement = document.createElement('button');
+        // leftButtonElement.classList.add('previous-button');
+        // leftButtonElement.innerHTML += '<img src="img/left_arrow_icon.png" alt="previous nav button">';
+        // leftButtonElement.addEventListener('click', previousModal);
+        // let rightButtonElement = document.createElement('button');
+        // rightButtonElement.classList.add('next-button');
+        // rightButtonElement.innerHTML += '<img src="img/right_arrow_icon.png" alt="next nav button">';
+        // rightButtonElement.addEventListener('click', nextPokemon);
+
 
         //Pokemon name and number
         let titleElement = document.createElement('h1');
@@ -120,14 +134,49 @@ let pokemonRepository = (function () {
         if (pokemon.types.length > 1) {
             contentElement3.innerText += ', ' + pokemon.types[1]["type"]["name"];
         }
+        //Stats
+        let statContainer = document.createElement('div');
+        statContainer.classList.add('stat-container');
+        // statContainer.innerText = "Stats:"
+        let hpStat = document.createElement('span');
+        hpStat.classList.add('stat-item');
+        hpStat.innerText += pokemon.hp;
+        hpStat.innerHTML += '<img src="img/health_icon.png" alt="HP icon" >';
+        let attackStat = document.createElement('span');
+        attackStat.classList.add('stat-item');
+        attackStat.innerText += pokemon.attack;
+        attackStat.innerHTML += '<img src="img/attack_icon.png" alt="attack icon" >';
+        let defenseStat = document.createElement('span');
+        defenseStat.classList.add('stat-item');
+        defenseStat.innerText += pokemon.defense;
+        defenseStat.innerHTML += '<img src="img/defense_icon.png" alt="defense icon" >';
+
         
         //Adding modal elements to DOM
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
+        // titleElement.appendChild(leftButtonElement);
+        // titleElement.appendChild(rightButtonElement);
         modal.appendChild(contentElement);
         modal.appendChild(contentElement2);
         modal.appendChild(contentElement3);
+        modal.appendChild(statContainer);
+        statContainer.appendChild(hpStat);
+        statContainer.appendChild(attackStat);
+        statContainer.appendChild(defenseStat);
         modalContainer.appendChild(modal);
+
+        //Trying to figure out next and previous buttons...
+        // function nextModal() {
+        //     hideModal();
+        //     let nextPokemon = pokemon.nextSibling;
+        //     showModal(pokemon.nextSibling);
+        // }
+        // function previousModal() {
+        //     hideModal();
+        //     let prevPokemon = pokemon.previousSibling;
+        //     showDetails(pokemon.previousSibling);
+        // }
 
         function hideModal() {
             modalContainer.classList.remove('is-visible');
@@ -150,6 +199,14 @@ let pokemonRepository = (function () {
             }
         });
     }
+
+    //Trying to figure out next and previous buttons..
+    // function nextPokemon(pokemon) {
+    //     let next = pokemon + 1;
+    //     loadDetails(next).then(() => {
+    //         showModal(next);
+    //     })
+    // }
 
     function showDetails(pokemon) {
         loadDetails(pokemon).then(() => {
