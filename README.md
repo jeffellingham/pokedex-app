@@ -1,24 +1,25 @@
-# Pokedex app, GO!
+# Pokédex app, GO!
 
-This app was designed for the average, working trainer who needs a simple, portable Pokedex for their quest to catch 'em all! I built it throughout the intro to JavaScript course of my CareerFoundry bootcamp.
+This app was designed for the average, working trainer who needs a simple, portable Pokédex for their quest to catch 'em all! I built it throughout the intro to JavaScript course of my CareerFoundry bootcamp. Specifically, the app covers all 150 Pokémon from the original red/blue games that took the world by storm in the late 1990s.
 
-Specifically, the app covers all 150 Pokemon from the original red/blue games that took the world by storm in the late 1990s. The trainer/user can view all the Pokemon, search for a specific one, or filter them by type. Also, if the trainer/user clicks on a Pokemon, they'll be shown a plethora of important information needed to aid them as they battle and capture it.
+## Features
 
-Lastly, this Pokedex will be *quite* aesthetically pleasing to the trainer's eyes, if I say so myself. If you don't believe me, [check it out for yourself](https://jeffellingham.github.io/pokedex-app).
+- We took a functional programming approach, and *initially* did as much in JavaScript over HTML as possible to practice and learn.
+- Loaded data from an API using AJAX
+- Viewable on [GitHub Pages](https://jeffellingham.github.io/pokedex-app)
+- The trainer/user can: 
+    - View all 150 Pokémon 
+    - Search/filter for a specific Pokémon
+    - Click on a Pokémon for a modal pop-up to show important information needed to aid them as they battle and capture it.
 
-## Technical aspects
+## Dependencies
 
-Other resources used for the Pokedex:
-- HTML5
-- CSS3
-- JavaScript ES6+
-- AJAX
-- [GitHub Pages](https://jeffellingham.github.io/pokedex-app) 
+This Pokédex app relies on Bootstrap. I created a fully functional app, then, in the final section, had to rework everything to utilize some of Bootstrap's features (such as their navbar and modals).
 
 ## Credit and Contact
 
-This Pokedex and its creator owe a big thanks to **PokeAPI** and *its creators*, because that API was invaluable in bringing this app to life. I'd also like to thank Nintendo and everyone involved in creating these games that brightened my childhood and provided the content for a fun web development project.
+This Pokédex and its creator owe a big thanks to **PokeAPI** and *its creators*, because that API was invaluable in bringing this app to life. I'd also like to thank Nintendo and everyone involved in creating these games that brightened my childhood and provided the content for a fun web development project.
 
 Also, I'd like to thank CareerFoundry, my tutor Jubril, and my mentor Paulo for helping me throughout this project's creation.
 
-If any of you trainers/users have thoughts on how I can improve the Pokedex, or even this README, don't hesitate to reach out! [Here's my personal contact page](https://jeffellingham.github.io/contact.html).
+If any of you trainers/users have thoughts on how I can improve the Pokédex, or even this README, don't hesitate to reach out! [Here's my personal contact page](https://jeffellingham.github.io/contact.html).
