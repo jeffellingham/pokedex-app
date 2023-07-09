@@ -1,6 +1,6 @@
 # Pokédex app, GO!
 
-This app was designed for the average, working trainer who needs a simple, portable Pokédex for their quest to catch 'em all! I built it throughout the intro to JavaScript course of my CareerFoundry bootcamp. Specifically, the app covers all 150 Pokémon from the original red/blue games that took the world by storm in the late 1990s.
+This app was designed with HTML, CSS, and ES6+ JavaScript for the average, working trainer who needs a simple, portable Pokédex for their quest to catch 'em all! I built it throughout the intro to JavaScript course of my CareerFoundry bootcamp. Specifically, the app covers all 150 Pokémon from the original red/blue games that took the world by storm in the late 1990s.
 
 ## Features
 
