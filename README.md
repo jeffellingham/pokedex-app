@@ -4,7 +4,7 @@ This app was designed with HTML, CSS, and ES6+ JavaScript for the average, worki
 
 ## Features
 
-- We took a functional programming approach, and *initially* did as much in JavaScript over HTML as possible to practice and learn.
+- We took a functional programming approach, and *initially* did as much in JavaScript over HTML as possible to practice and learn (before implementing Bootstrap).
 - Loaded data from the RESTful Pokémon API: [PokéAPI](https://pokeapi.co/)
 - Polyfills:
     - Fetch
