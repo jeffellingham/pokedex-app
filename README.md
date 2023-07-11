@@ -23,7 +23,7 @@ This Pokédex app relies on [**Bootstrap**](https://getbootstrap.com/). I create
 
 ## Credit and Contact
 
-This Pokédex and its creator owe a big thanks to **PokeAPI** and *its creators*, because that API was invaluable in bringing this app to life. I'd also like to thank Nintendo and everyone involved in creating these games that brightened my childhood and provided the content for a fun web development project.
+This Pokédex and its creator owe a big thanks to **PokeAPI** and *its creators*, because that API was invaluable in bringing this app to life. Another thank you goes out to Nintendo and everyone involved in blessing the world with these games that brightened my childhood and provided the content for a fun web development project.
 
 I'd also like to thank CareerFoundry, my tutor Jubril, and my mentor Paulo for helping me throughout this project's creation.
 
@@ -31,18 +31,18 @@ If any of you trainers/users have thoughts on how I can improve the Pokédex, or
 
 ## Images of app
 
-### Full desktop version of app
+### Desktop version of app:
 
 ![Picture of the Pokedex app on a desktop computer](img/desktopApp.png)
 
-### Desktop modal
+### Desktop modal:
 
 ![Picture of the Pokedex app's modal on a desktop computer](img/desktopModal.png)
 
-### Mobile version of app
+### Mobile version of app:
 
 ![Picture of the Pokedex app on a mobile device](img/mobileApp.png)
 
-### Mobile modal
+### Mobile modal:
 
 ![Picture of the Pokedex app's modal on a mobile device](img/mobileModal.png)
