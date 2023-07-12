@@ -1,6 +1,11 @@
+//TODO: 1. make list buttons smaller when on small/mobile screens (font size, image, button, etc)
+//TODO: 2. Set the size of modal images so the modal is consistent for every pokemon
+//TODO: 4. Split background color for dual types, or switch to uniform color and list types with colors elsewhere, like under image or button
+
 let pokemonRepository = (function () {
     let pokemonList = [];
     let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
+    let pokeTypes = [];
 
     //To add more pokemon/data to the array
     function add(pokemon) {
@@ -32,6 +37,41 @@ let pokemonRepository = (function () {
         filteredList.forEach((item) => {
             addListItem(item);
         });
+    });
+
+    // Filter by type
+    const typeFilter = document.getElementById("type-filter");
+    //First I need to populate the select element--why didn't that work...?
+    // pokeTypes.forEach((type) => {
+    //     console.log(type);
+    //     typeFilter.innerHTML += `<option value="${type}">${type}</option>`;
+    // })
+    // Add eventListener to hardcorded select options
+    typeFilter.addEventListener("change", function () {
+        const selectedType = typeFilter.value;
+
+        if (!typeFilter.classList.contains(selectedType)) {
+            typeFilter.className = "";
+            typeFilter.classList.add(selectedType);
+        }
+
+        const filteredPokemon = pokemonList.filter(function (pokemon) {
+            //Tried a couple ways to filter for multiple selections, but none worked
+            return pokemon.types.includes(selectedType);
+        });
+
+        document.querySelector(".pokemon-list").innerHTML = "";
+        filteredPokemon
+            .map(function (pokemon) {
+                return addListItem(pokemon);
+            })
+            .join("");
+
+        if (selectedType === "all") {
+            getAll().forEach(function (pokemon) {
+                addListItem(pokemon);
+            });
+        }
     });
 
     //Function to add each pokemon data to a newly created DOM element

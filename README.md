@@ -11,6 +11,7 @@ This app was designed with HTML, CSS, and ES6+ JavaScript for the average, worki
 - The trainer/user can: 
     - View all 150 Pokémon 
     - Search/filter for a specific Pokémon
+    - Filter by a specific Pokémon type
     - Click on a Pokémon for a modal pop-up to show important information needed to aid them as they battle and capture it.
 
 ## Link to app:
