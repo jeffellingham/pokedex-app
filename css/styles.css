@@ -151,10 +151,20 @@ main {
     align-self: center;
 }
 
-#search-bar {
+#search-bar, .type-container {
     align-self: center;
     width: 300px;
-    margin: 10px auto;
+    margin: 10px;
+}
+
+#type-filter, option {
+    width: 160px;
+    font-size: 17px;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3px 0;
+    border-radius: 5px;
 }
 
 .pokemon-list {
@@ -270,7 +280,7 @@ main {
     }
 }
 
-@media all and (max-width: 250px) {
+@media all and (max-width: 350px) {
     .logo {
         width: 75px;
     }
@@ -284,10 +294,16 @@ main {
         width: 160px;
         padding: 3px;
     }
+    .type-container {
+        width: 160px;
+    }
 }
 
 /* -------DYNAMIC BUTTON BACKGROUND COLORS------------- */
 
+.all {
+    background-color: whitesmoke;
+}
 .normal {
     background-color: #a8a77a;
 }
