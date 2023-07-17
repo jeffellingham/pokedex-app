@@ -1,5 +1,3 @@
-//TODO: 1. make list buttons smaller when on small/mobile screens (font size, image, button, etc)
-//TODO: 2. Set the size of modal images so the modal is consistent for every pokemon
 //TODO: 4. Split background color for dual types, or switch to uniform color and list types with colors elsewhere, like under image or button
 
 let pokemonRepository = (function () {
@@ -146,6 +144,10 @@ let pokemonRepository = (function () {
                 for (let i = 0; i < details.types.length; i++) {
                     item.types[i] = details.types[i]["type"]["name"];
                 }
+                item.abilities = [];
+                for (let i = 0; i < details.abilities.length; i++) {
+                    item.abilities[i] = details.abilities[i]["ability"]["name"];
+                }
                 item.hp = details.stats[1].base_stat;
                 item.attack = details.stats[2].base_stat;
                 item.defense = details.stats[3].base_stat;
@@ -181,6 +183,11 @@ let pokemonRepository = (function () {
         typeElement.innerText = "Types: " + pokemon.types[0];
         if (pokemon.types.length > 1) {
             typeElement.innerText += ", " + pokemon.types[1];
+        }
+        let abilityElement = document.querySelector(".ability-el");
+        abilityElement.innerText = "Abilities: " + pokemon.abilities[0];
+        if (pokemon.abilities.length > 1) {
+            abilityElement.innerText += ", " + pokemon.abilities[1];
         }
 
         // Footer nav buttons
@@ -243,6 +250,10 @@ let pokemonRepository = (function () {
         document.querySelector(".pokedex").classList.remove("hidden");
         document.querySelector(".loader").classList.add("hidden");
     }
+    
+    function preloadImages(pokemon) {
+        new Image().src = pokemon.modalImageUrl;
+    }
 
     return {
         add: add,
@@ -252,6 +263,7 @@ let pokemonRepository = (function () {
         loadList,
         loadDetails,
         hideLoadingMessage,
+        preloadImages
         // pokeSearch,
         // displayTypeButtons
     };
